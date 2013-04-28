@@ -48,8 +48,14 @@ public class PersonFormBean implements Serializable {
 	// Actions
 	public String addPerson() {
 		pm.addPerson(person);
+		person = new Person();
 		return "showPersons";
 		//return null;
+	}
+	
+	public String editPerson(){
+		person= persons.getRowData();
+		return "addSimple";
 	}
 
 	public String deletePerson() {

@@ -27,6 +27,11 @@
         <h:commandLink value="#{msg.actionDelete}" action="#{personBean.deletePerson}"/>
       </h:column>
       
+      <h:column>
+      	<f:facet name="header">Edit</f:facet>
+      	<h:commandLink value="Edit" action="#{personBean.editPerson}" />
+      </h:column>
+      
      </h:dataTable>
     </h:form>
       

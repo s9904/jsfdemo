@@ -9,6 +9,13 @@ import javax.validation.constraints.Size;
 
 public class Person {
 	
+	private int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	private String firstName = "unknown";
 	private String zipCode = "";
 	private String pin = "";

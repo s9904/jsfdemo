@@ -10,21 +10,42 @@ import com.example.jsfdemo.domain.Person;
 @ApplicationScoped
 public class PersonManager {
 	private List<Person> db = new ArrayList<Person>();
-
+    private static int size;
 	public void addPerson(Person person) {
-		Person newPerson = new Person();
-
-		newPerson.setFirstName(person.getFirstName());
-		newPerson.setZipCode(person.getZipCode());
-		newPerson.setPin(person.getPin());
-		newPerson.setDateOfBirth(person.getDateOfBirth());
-		newPerson.setMarried(person.isMarried());
-		newPerson.setWeight(person.getWeight());
-		newPerson.setNumOfChildren(person.getNumOfChildren());
-
-		db.add(newPerson);
+		Person p = get(person.getId());
+		if (p==null) {
+			Person newPerson = new Person();
+			PersonManager.size++;
+			setPerson(newPerson,person);
+			newPerson.setId(PersonManager.size);
+			db.add(newPerson);
+		} else {
+			//setPerson(p,person);
+		}
+		
+		
+		
+		
 	}
-
+	
+	private void setPerson(Person p, Person person) {
+		p.setFirstName(person.getFirstName());
+		p.setZipCode(person.getZipCode());
+		p.setPin(person.getPin());
+		p.setDateOfBirth(person.getDateOfBirth());
+		p.setMarried(person.isMarried());
+		p.setWeight(person.getWeight());
+		p.setNumOfChildren(person.getNumOfChildren());
+		p.setId(PersonManager.size);
+	}
+	public Person get(int id) {
+		for (Person p: db) {
+			if(p.getId()==id) {
+				return p;
+			}
+		}
+		return null;
+	}
 	// Removes the person with given PIN
 	public void deletePerson(Person person) {
 		Person personToRemove = null;
